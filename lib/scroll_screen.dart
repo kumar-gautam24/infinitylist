@@ -13,7 +13,7 @@ class _ScrollScreenState extends State<ScrollScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<Book> _books = [];
   int _quantity = 15;
-  // bool _isLoading = false;
+ 
 
   @override
   void initState() {
@@ -31,10 +31,7 @@ class _ScrollScreenState extends State<ScrollScreen> {
   }
 
   Future<void> _fetchBooks() async {
-    // setState(() {
-    //   _isLoading = true;
-    // });
-
+ 
     List<Book> newBooks = await BookRepo.getBooks(_quantity);
     setState(() {
       _books.addAll(newBooks);
