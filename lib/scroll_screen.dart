@@ -13,7 +13,7 @@ class _ScrollScreenState extends State<ScrollScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<Book> _books = [];
   int _quantity = 15;
-  bool _isLoading = false;
+  // bool _isLoading = false;
 
   @override
   void initState() {
@@ -24,30 +24,21 @@ class _ScrollScreenState extends State<ScrollScreen> {
 
   void _scrollListener() {
     if (_scrollController.position.pixels ==
-            _scrollController.position.maxScrollExtent &&
-        !_isLoading) {
+        _scrollController.position.maxScrollExtent) {
       _quantity += 15;
       _fetchBooks();
     }
   }
 
   Future<void> _fetchBooks() async {
-    setState(() {
-      _isLoading = true;
-    });
+    // setState(() {
+    //   _isLoading = true;
+    // });
 
-    try {
-      List<Book> newBooks = await BookRepo.getBooks(_quantity);
-      setState(() {
-        _books.addAll(newBooks);
-      });
-    } catch (e) {
-      print('Error fetching books: $e');
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
+    List<Book> newBooks = await BookRepo.getBooks(_quantity);
+    setState(() {
+      _books.addAll(newBooks);
+    });
   }
 
   @override
